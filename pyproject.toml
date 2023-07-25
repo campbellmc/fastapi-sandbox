@@ -1,0 +1,49 @@
+[tool.bandit]
+exclude = []
+
+[tool.bandit.assert_used]
+skips = ['*/tests.py',]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+'''
+
+[tool.ruff]
+select = [
+  "A", "ANN", "ARG", "B", "BLE001", "C4", "C90", "DTZ", "E", "EXE", "F",
+  "FBT", "G", "I", "INT", "ISC", "PTH", "Q", "RSE", "RET", "S", "SIM",
+  "SLF", "T10", "T20", "UP"
+]
+# Temporarily disable ANN201
+ignore = ["ANN201"]
+unfixable = ["B"]
+target-version = "py311"
+[per-file-ignores]
+"__init__.py" = ["E402"]
+
+[tool.poetry]
+name = "fastapi-sandbox"
+version = "0.1.0"
+description = ""
+authors = ["campbell <campbellmc@idlestate.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.100.0"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+pydantic = {extras = ["email"], version = "^2.0.3"}
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+ruff = "^0.0.277"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
